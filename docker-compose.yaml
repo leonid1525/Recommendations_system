@@ -1,0 +1,55 @@
+version: "3.10"
+
+services:
+  database:
+    image: postgres
+    container_name: database
+    environment:
+      POSTGRES_DB: data
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "user"]
+    ports:
+      - 5432:5432
+    networks:
+      - test
+
+  to_sql:
+    image: leonid1525/recomendation_system_main_app:v2
+    container_name: to_sql
+    environment:
+      POSTGRES_DB: data
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST: database
+      POSTGRES_PORT: 5432
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - 80:80
+    networks:
+      - test
+
+  The_main_application_container:
+    image: leonid1525/recomendation_system_main_app:v1
+    container_name: main_application
+    environment:
+      POSTGRES_DB: data
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST: database
+      POSTGRES_PORT: 5432
+    depends_on:
+      database:
+        condition: service_healthy
+      to_sql:
+        condition: service_completed_successfully
+    ports:
+      - 8899:8899
+    networks:
+      - test
+networks:
+  test:
+    name: test
