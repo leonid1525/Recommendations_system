@@ -1,4 +1,4 @@
-# Добро пожаловать в Recomendations_system!
+# Добро пожаловать в Recommendations_system!
 
 ## Введение
 
