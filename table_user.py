@@ -3,7 +3,7 @@ from sqlalchemy.sql.functions import count
 
 from database import Base, SessionLocal
 
-
+# Класс описывающий таблицу в базе данных, с помощью него, можно обращаться через sqlalchemy к таблице User
 class User(Base):
     __tablename__ = "user"
     id = Column(Integer, primary_key=True)
@@ -15,6 +15,7 @@ class User(Base):
     os=Column(String)
     source=Column(String)
 
+# Проверка работоспособности класса
 if __name__ == "__main__":
     y=[]
     session=SessionLocal()

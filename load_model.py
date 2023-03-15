@@ -1,7 +1,7 @@
 from catboost import CatBoostClassifier
 
-# Model loading function, returns a pre-trained model, ready to use
-def load_models():
+# Функция загрузки модели, заранее обученной и готовой к использованию
+def load_models(name_model: str):
     model = CatBoostClassifier()
-    model.load_model("catboost (3)")
+    model.load_model(name_model, format="cbm")
     return model

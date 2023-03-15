@@ -1,5 +1,8 @@
+from typing import List
 from pydantic import BaseModel
 import datetime
+
+# Классы описывающиие, то какими должны быть ответы функций-запросов
 class UserGet(BaseModel):
     id:int
     gender:int
@@ -28,3 +31,7 @@ class FeedGet(BaseModel):
     post:PostGet
     class Config:
         orm_mode=True
+
+class Response(BaseModel):
+    exp_group: str
+    recommendations: List[PostGet]

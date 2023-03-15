@@ -7,6 +7,7 @@ from database import Base
 from table_user import User
 from table_post import Post
 
+# Класс описывающий таблицу в базе данных, с помощью него, можно обращаться через sqlalchemy к таблице Feed
 class Feed(Base):
     __tablename__ = "feed_action"
     user_id=Column(Integer, ForeignKey("user.id"), primary_key=True)

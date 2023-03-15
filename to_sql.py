@@ -1,5 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
+
+# Данный файл считывает таблицы из файлов с расширением .csv и отправляет их в базу данных
 print(1)
 user = pd.read_csv('u-2 (1).csv', sep=";")
 print(2)
